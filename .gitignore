@@ -1,0 +1,41 @@
+# dependencies
+node_modules/
+.pnpm-store/
+
+# next.js
+.next/
+out/
+
+# production
+build/
+
+# env files
+.env
+.env*.local
+
+# debug
+npm-debug.log*
+pnpm-debug.log*
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+
+# testing
+coverage/
+
+# database (local SQLite files)
+*.sqlite
+*.sqlite3
+*.db
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+# rulesync generated output
+.claude/
+.cursor/rules/

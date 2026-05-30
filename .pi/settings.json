@@ -1,0 +1,7 @@
+{
+  "shellCommandPrefix": "export PATH=\"$PWD/node_modules/.bin:$PATH\"\n",
+  "skills": ["./skills", "../.rulesync/skills"],
+  "prompts": ["./prompts", "../.rulesync/commands"],
+  "extensions": [],
+  "sessionDir": ".pi/sessions"
+}
