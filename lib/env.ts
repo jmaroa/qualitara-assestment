@@ -2,7 +2,7 @@ import { z } from "zod";
 
 const serverSchema = z.object({
   NODE_ENV: z.enum(["development", "test", "production"]).default("development"),
-  // Add DB connection string, API keys, etc. as needed
+  DATABASE_PATH: z.string().default("data/usage-events.sqlite"),
 });
 
 const clientSchema = z.object({

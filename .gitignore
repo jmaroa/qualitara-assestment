@@ -28,6 +28,7 @@ pnpm-debug.log*
 coverage/
 
 # database (local SQLite files)
+data/
 *.sqlite
 *.sqlite3
 *.db
