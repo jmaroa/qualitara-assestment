@@ -100,6 +100,8 @@ export function AdminUsageSummaryPage({ defaultWeekEndingDate }: AdminUsageSumma
   );
 
   const summary = summaryQuery.data;
+  const hasSubmitted = submittedInput !== null;
+  const isLoading = hasSubmitted && summaryQuery.isPending;
   const sortedSchools = useMemo(() => {
     if (!summary) {
       return [];
@@ -205,7 +207,7 @@ export function AdminUsageSummaryPage({ defaultWeekEndingDate }: AdminUsageSumma
         </CardContent>
       </Card>
 
-      {summaryQuery.isPending ? (
+      {isLoading ? (
         <Card>
           <CardContent className="py-8">
             <p className="text-sm text-[var(--color-muted-foreground)]">Loading summary…</p>

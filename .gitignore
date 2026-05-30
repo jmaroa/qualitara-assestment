@@ -40,3 +40,6 @@ next-env.d.ts
 # rulesync generated output
 .claude/
 .cursor/rules/
+
+# ai sessions
+.pi/sessions/*

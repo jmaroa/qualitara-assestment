@@ -1,6 +1,6 @@
-import { render, screen } from "@testing-library/react";
+import { cleanup, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { beforeEach, describe, expect, it, vi } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import { AdminUsageSummaryPage, formatSummaryText } from "@/components/admin-usage-summary-page";
 
@@ -49,8 +49,12 @@ beforeEach(() => {
   useWeeklyDistrictSummaryQueryMock.mockReset();
 });
 
+afterEach(() => {
+  cleanup();
+});
+
 describe("AdminUsageSummaryPage", () => {
-  it("shows a loading state while the summary request is in flight", () => {
+  it("does not show a loading state before the first submit", () => {
     // Arrange
     useWeeklyDistrictSummaryQueryMock.mockReturnValue({
       data: undefined,
@@ -60,6 +64,24 @@ describe("AdminUsageSummaryPage", () => {
 
     // Act
     render(<AdminUsageSummaryPage defaultWeekEndingDate="2026-05-30" />);
+
+    // Assert
+    expect(screen.queryByText("Loading summary…")).not.toBeInTheDocument();
+  });
+
+  it("shows a loading state while the summary request is in flight after submit", async () => {
+    // Arrange
+    const user = userEvent.setup();
+    useWeeklyDistrictSummaryQueryMock.mockReturnValue({
+      data: undefined,
+      error: null,
+      isPending: true,
+    });
+
+    // Act
+    render(<AdminUsageSummaryPage defaultWeekEndingDate="2026-05-30" />);
+    await user.type(screen.getByLabelText("District ID"), "district-1");
+    await user.click(screen.getByRole("button", { name: "Load summary" }));
 
     // Assert
     expect(screen.getByText("Loading summary…")).toBeInTheDocument();
