@@ -1,7 +1,9 @@
+import { AdminUsageSummaryPage } from "@/components/admin-usage-summary-page";
+
+function getDefaultWeekEndingDate() {
+  return new Date().toISOString().slice(0, 10);
+}
+
 export default function HomePage() {
-  return (
-    <main className="flex min-h-screen items-center justify-center">
-      <h1 className="text-2xl font-semibold">District Usage Reports</h1>
-    </main>
-  );
+  return <AdminUsageSummaryPage defaultWeekEndingDate={getDefaultWeekEndingDate()} />;
 }
