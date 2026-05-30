@@ -214,7 +214,12 @@ The main workflow was:
 - generate proposal/design/spec/tasks
 - apply the change with TDD-first implementation
 - verify with tests/typecheck
-- archive the change when complete
+- archive the change with spec sync
+
+Important OpenSpec note:
+- the safest close-out command is `openspec archive <name> -y`
+- that archives the change **and** syncs delta specs into `openspec/specs/`
+- if an older `/opsx-archive` prompt is used and it only moves the folder to `changes/archive/`, run `/opsx-sync` immediately after so `openspec/specs/` does not stay empty or stale
 
 ### What I delegated to AI
 
@@ -256,7 +261,10 @@ Typical flow:
 2. Start a change with `/opsx-propose`
 3. Implement with `/opsx-apply`
 4. Verify with tests/typecheck
-5. Archive with `/opsx-archive`
+5. Archive with `openspec archive <name> -y`
+6. Export the AI session into `ai-sessions/`
+
+If `/opsx-archive` is used in an older prompt/workflow, follow it with `/opsx-sync` to ensure delta specs are merged into `openspec/specs/`.
 
 That kept requirements, design intent, implementation tasks, and completion state in sync while building.
 
