@@ -1,7 +1,8 @@
 import { createTRPCRouter } from "@/lib/trpc/init";
+import { reportsRouter } from "@/server/routers/reports";
 
 export const appRouter = createTRPCRouter({
-  // Register routers here as they are created
+  reports: reportsRouter,
 });
 
 export type AppRouter = typeof appRouter;
